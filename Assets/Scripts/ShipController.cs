@@ -6,8 +6,13 @@ public class ShipController : MonoBehaviour
     private Rigidbody2D m_rigidbody;
     private float m_turnInput;
     private float m_forwardInput;
+    [SerializeField]
     private float m_turnSpeed;
+    [SerializeField]
     private float m_moveSpeed;
+
+    [SerializeField]
+    private float m_stoppingPower;
 
     void Awake() {
         m_rigidbody = gameObject.GetComponent<Rigidbody2D>();
@@ -26,12 +31,18 @@ public class ShipController : MonoBehaviour
         Debug.Log("Attack me");
     }
 
-    public int targetFrameRate = 60;
-
     private void LateUpdate() {
 
         m_rigidbody.rotation -= (m_turnInput * (m_turnSpeed * 100f)) * Time.deltaTime;
-        m_rigidbody.AddRelativeForceY((m_forwardInput * m_moveSpeed) * Time.deltaTime);
+
+        if (m_forwardInput > 0)
+        {
+            m_rigidbody.AddRelativeForceY((m_forwardInput * (m_moveSpeed * 100f))* Time.deltaTime);
+        }
+        else if (m_forwardInput < 0)
+        {
+            m_rigidbody.linearVelocity = Vector2.Lerp(m_rigidbody.linearVelocity,Vector2.zero, m_stoppingPower * Time.deltaTime);
+        }
 
     }
 
