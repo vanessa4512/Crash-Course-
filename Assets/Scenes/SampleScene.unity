@@ -373,9 +373,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebe143905b1274a46a048cf52ca2059a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShipController
+  m_maxSpeed: 35
   m_turnSpeed: 2.5
-  m_moveSpeed: 3.5
-  m_stoppingPower: 5
+  m_moveSpeed: 20
+  m_stoppingPower: 20
+  m_bounds:
+    serializedVersion: 2
+    x: -70
+    y: -35
+    width: 130
+    height: 70
 --- !u!114 &1549434602
 MonoBehaviour:
   m_ObjectHideFlags: 0
