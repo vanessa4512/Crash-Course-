@@ -1,9 +1,8 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class ShipController : MonoBehaviour
+public class ShipController : BoundedEntity
 {
-    private Rigidbody2D m_rigidbody;
     private float       m_turnInput;
     private float       m_forwardInput;
 
@@ -15,8 +14,7 @@ public class ShipController : MonoBehaviour
     private float m_moveSpeed;
     [SerializeField]
     private float m_stoppingPower;
-    [SerializeField]
-    private Rect m_bounds;
+
 
 
 
@@ -37,17 +35,17 @@ public class ShipController : MonoBehaviour
         Debug.Log("Attack me");
     }
 
-    private void LateUpdate() {
+    protected override void LateUpdate() {
 
         m_rigidbody.rotation -= (m_turnInput * (m_turnSpeed * 100f)) * Time.deltaTime;
 
         if (m_forwardInput > 0)
         {
-            m_rigidbody.AddRelativeForceY((m_forwardInput * (m_moveSpeed * 100f))* Time.deltaTime);
+            m_rigidbody.AddRelativeForceY((m_forwardInput * (m_moveSpeed * 100f)) * Time.deltaTime);
         }
         else if (m_forwardInput < 0)
         {
-            m_rigidbody.linearVelocity = Vector2.Lerp(m_rigidbody.linearVelocity,Vector2.zero, m_stoppingPower * Time.deltaTime);
+            m_rigidbody.linearVelocity = Vector2.Lerp(m_rigidbody.linearVelocity, Vector2.zero, m_stoppingPower * Time.deltaTime);
         }
 
         if (m_rigidbody.linearVelocity.magnitude > m_maxSpeed)
@@ -55,35 +53,9 @@ public class ShipController : MonoBehaviour
             m_rigidbody.linearVelocity = m_rigidbody.linearVelocity.normalized * m_maxSpeed;
         }
 
-        if (!m_bounds.Contains(transform.position))
-        {
-            Vector2 position = transform.position;
-
-            if (position.x < m_bounds.xMin)
-            {
-                position.x = m_bounds.xMax;
-            }
-
-            if (position.x > m_bounds.xMax)
-            {
-                position.x = m_bounds.xMin;
-            }
-
-            if (position.y < m_bounds.yMin)
-            {
-                position.y = m_bounds.yMax;
-            }
-
-            if (position.y > m_bounds.yMax)
-            {
-                position.y = m_bounds.yMin;
-            }
-             m_rigidbody.position = position;
-
-        }
+        base.LateUpdate();
 
     }
-
 }
 
 
