@@ -2,8 +2,13 @@ using UnityEngine;
 
 public class NewMonoBehaviourScript : BoundedEntity
 {
+    [SerializeField]
+    private float m_forcePower;
+    [SerializeField]
+    private float m_angularPower;
 
-    //[SerializeField]
-    //private Rect m_bounds;
-
+    private void Start() {
+        m_rigidbody.AddForce(Random.insideUnitCircle * m_rigidbody.mass * m_forcePower, ForceMode2D.Impulse);
+        m_rigidbody.angularVelocity = Random.Range(-m_angularPower, m_angularPower);
+    }
 }

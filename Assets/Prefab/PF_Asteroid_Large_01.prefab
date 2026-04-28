@@ -360,3 +360,5 @@ MonoBehaviour:
     y: -35
     width: 130
     height: 70
+  m_forcePower: 10
+  m_angularPower: 180

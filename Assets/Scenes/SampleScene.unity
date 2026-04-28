@@ -764,7 +764,7 @@ Transform:
   m_GameObject: {fileID: 1981335566}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.36062, y: 8.64773, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -782,8 +782,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfb543abcc907734085ba60b50e4ef04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AsteroidManager
-  m_maximumAsteroids: 0
-  m_asteroidsPrefabs: []
+  m_maximumAsteroids: 10
+  m_asteroidsPrefabs:
+  - {fileID: 4853061621701137250, guid: ce3d28242f813b44eb169d6938f2f016, type: 3}
+  - {fileID: 7896545307494569914, guid: f3e0c5235fadcbe47a86e671faa2f5b6, type: 3}
+  - {fileID: 1523141550508911229, guid: 8a8ab420b7c565a46a7edf12e6555d12, type: 3}
+  m_spawnArea:
+    serializedVersion: 2
+    x: -40
+    y: -25
+    width: 80
+    height: 50
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

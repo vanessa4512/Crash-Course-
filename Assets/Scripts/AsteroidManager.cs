@@ -1,6 +1,7 @@
 using System;
-using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class AsteroidManager : MonoBehaviour
@@ -19,7 +20,7 @@ public class AsteroidManager : MonoBehaviour
             StartCoroutine(SpawnAsteroid());
         }
 
-        private IEnumerator<> SpawnAsteroid() {
+        private IEnumerator SpawnAsteroid() {
             for (int i = 0; i < m_maximumAsteroids; i++)
             {
                 yield return new WaitForSeconds(0.1f);
