@@ -66,6 +66,10 @@ public class ShipController : BoundedEntity
         {
             TrySpawnBullet();
         }
+        else
+        {
+            m_fireCount = m_fireDelay;
+        }
 
     }
 
