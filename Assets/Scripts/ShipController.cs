@@ -15,11 +15,18 @@ public class ShipController : BoundedEntity
     [SerializeField]
     private float m_stoppingPower;
 
-
+    [SerializeField]
+    private GameObject m_bulletPrefb;
+    [SerializeField]
+    private float m_fireDelay;
+    [SerializeField]
+    private float m_fireCount;
+    [SerializeField]
+    private bool m_isFiring;
 
 
     void Awake() {
-        m_rigidbody = gameObject.GetComponent<Rigidbody2D>();
+     m_rigidbody = gameObject.GetComponent<Rigidbody2D>();
     }
 
     void OnMove(InputValue value)
@@ -31,8 +38,8 @@ public class ShipController : BoundedEntity
 
     }
 
-    void OnAttack() {
-        Debug.Log("Attack me");
+    void OnAttack(InputValue value) {
+        m_isFiring = value.Get<float>() > 0f;
     }
 
     protected override void LateUpdate() {
@@ -55,6 +62,26 @@ public class ShipController : BoundedEntity
 
         base.LateUpdate();
 
+        if (m_isFiring)
+        {
+            TrySpawnBullet();
+        }
+
+    }
+
+    void TrySpawnBullet() {
+        if (m_fireCount >= m_fireDelay)
+        {
+            m_fireCount = 0;
+
+            GameObject bullet = GameObject.Instantiate(m_bulletPrefb);
+            bullet.transform.position = transform.position + (transform.up * 3f);
+            bullet.transform.up = transform.up;
+        }
+        else
+        {
+            m_fireCount += Time.deltaTime;
+        }
     }
 }
 
