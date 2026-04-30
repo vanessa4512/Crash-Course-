@@ -39,5 +39,12 @@ public class AsteroidManager : MonoBehaviour
                                          Random.Range(m_spawnArea.yMin, m_spawnArea.yMax)
                                         );
         asteroidToSpawn.transform.position = spawnPoint;
+
+        AsteroidController controller = asteroidToSpawn.GetComponent<AsteroidController>();
+        controller.onAsteroidDie += OnAsteroidDie;
+    }
+
+    private void OnAsteroidDie(AsteroidController obj) {
+        Destroy(obj.gameObject);
     }
 }
