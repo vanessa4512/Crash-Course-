@@ -786,11 +786,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfb543abcc907734085ba60b50e4ef04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AsteroidManager
-  m_maximumAsteroids: 10
+  m_maximumAsteroids: 5
   m_asteroidsPrefabs:
   - {fileID: 4853061621701137250, guid: ce3d28242f813b44eb169d6938f2f016, type: 3}
   - {fileID: 7896545307494569914, guid: f3e0c5235fadcbe47a86e671faa2f5b6, type: 3}
   - {fileID: 1523141550508911229, guid: 8a8ab420b7c565a46a7edf12e6555d12, type: 3}
+  - {fileID: 4853061621701137250, guid: 7cee929c01d9cbc4c884c93cf2e627d5, type: 3}
+  - {fileID: 4853061621701137250, guid: 8807791e24c8fda49a0ff63e4cd92ab1, type: 3}
+  - {fileID: 4853061621701137250, guid: 7258210826cd4e54d90a6e2aca4ecb43, type: 3}
+  - {fileID: 4853061621701137250, guid: d6b9d0d8c135a5745aaa45c494da367a, type: 3}
+  - {fileID: 4853061621701137250, guid: 001d6bb43320d8c4aacbbfe7f1790ac4, type: 3}
+  - {fileID: 4853061621701137250, guid: 24d856a30a8331e4ea13350d57719629, type: 3}
   m_spawnArea:
     serializedVersion: 2
     x: -40

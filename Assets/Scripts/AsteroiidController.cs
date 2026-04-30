@@ -5,9 +5,14 @@ using Random = UnityEngine.Random;
 public class AsteroidController : BoundedEntity
 {
     [SerializeField]
+    private int m_size;
+
+    [SerializeField]
     private float m_forcePower;
     [SerializeField]
     private float m_angularPower;
+
+    public int size => m_size;
     public event Action<AsteroidController> onAsteroidDie;
 
     [SerializeField]

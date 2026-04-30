@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -24,15 +26,20 @@ public class AsteroidManager : MonoBehaviour
             for (int i = 0; i < m_maximumAsteroids; i++)
             {
                 yield return new WaitForSeconds(0.1f);
-                SpawnRandomAsteroid();
+                SpawnRandomAsteroid(3);
             }
         }
 
 
-    private void SpawnRandomAsteroid()
+    private void SpawnRandomAsteroid(int size)
     {
-        int        index           = Random.Range(0, m_asteroidsPrefabs.Count);
-        GameObject asteroidToSpawn = Instantiate(m_asteroidsPrefabs[index], transform);
+        IEnumerable<GameObject> sizePrefabs = m_asteroidsPrefabs.Where((x) =>x.GetComponent<AsteroidController>().size == size);
+        if (sizePrefabs == null || sizePrefabs.Count() == 0)
+        {
+            return;
+        }
+        int        index           = Random.Range(0, sizePrefabs.Count());
+        GameObject asteroidToSpawn = Instantiate(sizePrefabs.ElementAt(index), transform);
 
         Vector2 spawnPoint = new Vector2(
                                          Random.Range(m_spawnArea.xMin, m_spawnArea.xMax),
@@ -44,7 +51,14 @@ public class AsteroidManager : MonoBehaviour
         controller.onAsteroidDie += OnAsteroidDie;
     }
 
-    private void OnAsteroidDie(AsteroidController obj) {
-        Destroy(obj.gameObject);
+    private void OnAsteroidDie(AsteroidController asteroid) {
+        int size = asteroid.size;
+
+        Destroy(asteroid.gameObject);
+        size--;
+        if (size > 0)
+        {
+            SpawnRandomAsteroid(size);
+        }
     }
 }
