@@ -24,11 +24,6 @@ public class ShipController : BoundedEntity
     [SerializeField]
     private bool m_isFiring;
 
-
-    void Awake() {
-     m_rigidbody = gameObject.GetComponent<Rigidbody2D>();
-    }
-
     void OnMove(InputValue value)
     {
         Vector2 moveInputDirection = value.Get<Vector2>();

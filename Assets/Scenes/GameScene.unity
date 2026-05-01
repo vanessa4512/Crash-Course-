@@ -379,10 +379,10 @@ MonoBehaviour:
     y: -35
     width: 130
     height: 70
-  m_maxSpeed: 35
+  m_maxSpeed: 25
   m_turnSpeed: 2.5
-  m_moveSpeed: 20
-  m_stoppingPower: 20
+  m_moveSpeed: 15
+  m_stoppingPower: 15
   m_bulletPrefb: {fileID: 8449148165734038623, guid: e78fb0d6f4ae7f34d96b202a0edd559e, type: 3}
   m_fireDelay: 0.1
   m_fireCount: 0
