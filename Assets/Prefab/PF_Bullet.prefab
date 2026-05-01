@@ -142,5 +142,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dd5aa0c6effbad4085ff79b926a924b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Bullet
-  forwarmSpeed: 10
+  forwarmSpeed: 25
   m_maximomLifetime: 1
