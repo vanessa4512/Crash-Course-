@@ -786,7 +786,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfb543abcc907734085ba60b50e4ef04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AsteroidManager
-  m_maximumAsteroids: 5
+  m_startingASteroids: 3
+  m_maximumAsteroids: 20
   m_asteroidsPrefabs:
   - {fileID: 4853061621701137250, guid: ce3d28242f813b44eb169d6938f2f016, type: 3}
   - {fileID: 7896545307494569914, guid: f3e0c5235fadcbe47a86e671faa2f5b6, type: 3}
@@ -804,6 +805,7 @@ MonoBehaviour:
     y: -25
     width: 80
     height: 50
+  m_asteroidSpawnDelay: 0.5
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -23,6 +23,9 @@ public class AsteroidManager : MonoBehaviour
     [SerializeField]
     private Rect m_spawnArea;
 
+    [SerializeField]
+    private float m_asteroidSpawnDelay;
+
     private int m_correntAsteroidCount;
 
     private void Start()
@@ -48,9 +51,11 @@ public class AsteroidManager : MonoBehaviour
             {
                 yield return new WaitForEndOfFrame();
             }
+            yield return new WaitForSeconds(0.1f);
 
             SpawnRandomAsteroid(3, GetSpawnPointRandom());
-            yield return new WaitForEndOfFrame(0.1f);
+
+            StartCoroutine(AsteroidSpawner());
         }
 
         private Vector2 GetSpawnPointRandom() {
@@ -87,6 +92,7 @@ public class AsteroidManager : MonoBehaviour
         Vector2 asteroidPoint =  asteroid.transform.position;
 
         Destroy(asteroid.gameObject);
+        m_correntAsteroidCount--;
 
         size--;
 

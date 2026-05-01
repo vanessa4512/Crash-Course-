@@ -23,7 +23,7 @@ public class AsteroidController : BoundedEntity
         m_rigidbody.angularVelocity = Random.Range(-m_angularPower, m_angularPower);
     }
 
-    public void OnTriggerEnter2D(Collider2D collision) {
+    public void OnTriggerEnter2D(Rigidbody2D collision) {
         m_health--;
         if (m_health <= 0)
         {
