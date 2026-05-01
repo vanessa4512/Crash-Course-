@@ -84,7 +84,10 @@ public class AsteroidManager : MonoBehaviour
         AsteroidController controller = asteroidToSpawn.GetComponent<AsteroidController>();
         controller.onAsteroidDie += OnAsteroidDie;
 
-        m_correntAsteroidCount++;
+        if (size == 3)
+        {
+            m_correntAsteroidCount--;
+        }
     }
 
     private void OnAsteroidDie(AsteroidController asteroid) {
@@ -92,7 +95,11 @@ public class AsteroidManager : MonoBehaviour
         Vector2 asteroidPoint =  asteroid.transform.position;
 
         Destroy(asteroid.gameObject);
-        m_correntAsteroidCount--;
+
+        if (size == 3)
+        {
+            m_correntAsteroidCount--;
+        }
 
         size--;
 
