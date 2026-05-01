@@ -12,7 +12,7 @@ public class Bullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position += transform.up * (forwarmSpeed * Time.deltaTime);
+        transform.position += (transform.up * forwarmSpeed) * Time.deltaTime;
 
         m_currentLifetime += Time.deltaTime;
 
