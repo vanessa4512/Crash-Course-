@@ -12,6 +12,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: PF_Asteroid_Large_02 Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 3051511521107153495, guid: 8a8ab420b7c565a46a7edf12e6555d12, type: 3}
+      propertyPath: m_health
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 3051511521107153495, guid: 8a8ab420b7c565a46a7edf12e6555d12, type: 3}
+      propertyPath: m_forcePower
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3051511521107153495, guid: 8a8ab420b7c565a46a7edf12e6555d12, type: 3}
+      propertyPath: m_angularPower
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 3232390292873852785, guid: 8a8ab420b7c565a46a7edf12e6555d12, type: 3}
       propertyPath: m_LocalScale.x
       value: 2.53

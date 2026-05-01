@@ -9,6 +9,9 @@ using Random = UnityEngine.Random;
 public class AsteroidManager : MonoBehaviour
 {
     [SerializeField]
+    private int m_startingASteroids;
+
+    [SerializeField]
     private int m_maximumAsteroids;
 
     [SerializeField]
@@ -20,23 +23,44 @@ public class AsteroidManager : MonoBehaviour
     [SerializeField]
     private Rect m_spawnArea;
 
+    private int m_correntAsteroidCount;
+
     private void Start()
         {
-            StartCoroutine(SpawnAsteroid());
+            StartCoroutine(SpawnInitialAsteroids());
         }
 
-        private IEnumerator SpawnAsteroid() {
-            for (int i = 0; i < m_maximumAsteroids; i++)
+        private IEnumerator SpawnInitialAsteroids() {
+            for (int i = 0; i < m_startingASteroids; i++)
             {
                 Vector2 spawnPoint = new Vector2();
                 yield return new WaitForSeconds(0.1f);
 
-                SpawnRandomAsteroid(3, spawnPoint);
+                SpawnRandomAsteroid(3, GetSpawnPointRandom());
             }
+
+            StartCoroutine(AsteroidSpawner());
+
         }
 
+        private IEnumerator AsteroidSpawner() {
+            while (m_correntAsteroidCount >= m_maximumAsteroids)
+            {
+                yield return new WaitForEndOfFrame();
+            }
 
-    private void SpawnRandomAsteroid(int size, Vector2 spawnPoint)
+            SpawnRandomAsteroid(3, GetSpawnPointRandom());
+            yield return new WaitForEndOfFrame(0.1f);
+        }
+
+        private Vector2 GetSpawnPointRandom() {
+            Vector2 spawnPoint = new Vector2(
+                                             Random.Range(m_spawnArea.xMin, m_spawnArea.xMax),
+                                             Random.Range(m_spawnArea.yMin, m_spawnArea.yMax)
+                                             );
+            return spawnPoint;
+        }
+        private void SpawnRandomAsteroid(int size, Vector2 spawnPoint)
     {
         IEnumerable<GameObject> sizePrefabs = m_asteroidsPrefabs.Where((x) =>x.GetComponent<AsteroidController>().size == size);
         if (sizePrefabs == null || sizePrefabs.Count() == 0)
@@ -54,6 +78,8 @@ public class AsteroidManager : MonoBehaviour
 
         AsteroidController controller = asteroidToSpawn.GetComponent<AsteroidController>();
         controller.onAsteroidDie += OnAsteroidDie;
+
+        m_correntAsteroidCount++;
     }
 
     private void OnAsteroidDie(AsteroidController asteroid) {
@@ -70,7 +96,7 @@ public class AsteroidManager : MonoBehaviour
         {
             for (int i = 0; i < numToSpawn; i++)
             {
-                SpawnRandomAsteroid(size, (Random.insideUnitCircle * 2f) + asteroidPoint);
+                SpawnRandomAsteroid(size, (Random.insideUnitCircle * 5f) + asteroidPoint);
             }
         }
     }
