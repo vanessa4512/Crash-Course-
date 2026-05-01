@@ -1,7 +1,6 @@
 using System;
 using UnityEngine;
 using Random = UnityEngine.Random;
-
 public class AsteroidController : BoundedEntity
 {
     [SerializeField]
@@ -12,7 +11,7 @@ public class AsteroidController : BoundedEntity
     [SerializeField]
     private float m_angularPower;
 
-    public int size => m_size;
+    public int                              size => m_size;
     public event Action<AsteroidController> onAsteroidDie;
 
     [SerializeField]
@@ -23,19 +22,11 @@ public class AsteroidController : BoundedEntity
         m_rigidbody.angularVelocity = Random.Range(-m_angularPower, m_angularPower);
     }
 
-    public void OnCollisionEnter2D(Collision2D collision)
-    {
-        Debug.Log("COLISION REAL");
-
-        if (collision.gameObject.CompareTag("Bullet"))
+    public void OnTriggerEnter2D(Collider2D collision) {
+        m_health--;
+        if (m_health <= 0)
         {
-            m_health--;
-
-            if (m_health <= 0)
-            {
-                onAsteroidDie?.Invoke(this);
-            }
+            onAsteroidDie?.Invoke(this);
         }
     }
-
 }

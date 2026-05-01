@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.Rendering;
-
 public class Bullet : MonoBehaviour
 {
     [SerializeField]
@@ -10,7 +9,6 @@ public class Bullet : MonoBehaviour
     private float m_maximomLifetime;
 
     private float m_currentLifetime;
-
 
     // Update is called once per frame
     void Update()
