@@ -19,8 +19,7 @@ public class ShipController : BoundedEntity
     private GameObject m_bulletPrefb;
     [SerializeField]
     private float m_fireDelay;
-    [SerializeField]
-    private float m_fireCount;
+    private float m_fireCount = 0f;
     [SerializeField]
     private bool m_isFiring;
 
@@ -38,8 +37,9 @@ public class ShipController : BoundedEntity
 
     }
 
-    void OnAttack(InputValue value) {
-        m_isFiring = value.Get<float>() > 0f;
+    void OnAttack(InputValue value)
+    {
+        m_isFiring = value.isPressed;
     }
 
     protected override void LateUpdate() {
@@ -86,7 +86,9 @@ public class ShipController : BoundedEntity
         {
             m_fireCount += Time.deltaTime;
         }
+        Debug.Log("Firing: " + m_isFiring);
     }
+
 }
 
 

@@ -23,11 +23,19 @@ public class AsteroidController : BoundedEntity
         m_rigidbody.angularVelocity = Random.Range(-m_angularPower, m_angularPower);
     }
 
-    public void OnTriggerEnter2D(Rigidbody2D collision) {
-        m_health--;
-        if (m_health <= 0)
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log("COLISION REAL");
+
+        if (collision.gameObject.CompareTag("Bullet"))
         {
-            onAsteroidDie?.Invoke(this);
+            m_health--;
+
+            if (m_health <= 0)
+            {
+                onAsteroidDie?.Invoke(this);
+            }
         }
     }
+
 }
