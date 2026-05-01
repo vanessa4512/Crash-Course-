@@ -15,6 +15,9 @@ public class AsteroidManager : MonoBehaviour
     private List<GameObject> m_asteroidsPrefabs;
 
     [SerializeField]
+    private int [] m_numToSpawnOnDeath;
+
+    [SerializeField]
     private Rect m_spawnArea;
 
     private void Start()
@@ -58,10 +61,17 @@ public class AsteroidManager : MonoBehaviour
         Vector2 asteroidPoint =  asteroid.transform.position;
 
         Destroy(asteroid.gameObject);
+
         size--;
+
+        int numToSpawn = m_numToSpawnOnDeath[size];
+
         if (size > 0)
         {
-            SpawnRandomAsteroid(size,asteroidPoint);
+            for (int i = 0; i < numToSpawn; i++)
+            {
+                SpawnRandomAsteroid(size, (Random.insideUnitCircle * 2f) + asteroidPoint);
+            }
         }
     }
 }
