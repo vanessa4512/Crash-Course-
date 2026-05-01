@@ -25,13 +25,15 @@ public class AsteroidManager : MonoBehaviour
         private IEnumerator SpawnAsteroid() {
             for (int i = 0; i < m_maximumAsteroids; i++)
             {
+                Vector2 spawnPoint = new Vector2();
                 yield return new WaitForSeconds(0.1f);
-                SpawnRandomAsteroid(3);
+
+                SpawnRandomAsteroid(3, spawnPoint);
             }
         }
 
 
-    private void SpawnRandomAsteroid(int size)
+    private void SpawnRandomAsteroid(int size, Vector2 spawnPoint)
     {
         IEnumerable<GameObject> sizePrefabs = m_asteroidsPrefabs.Where((x) =>x.GetComponent<AsteroidController>().size == size);
         if (sizePrefabs == null || sizePrefabs.Count() == 0)
@@ -41,7 +43,7 @@ public class AsteroidManager : MonoBehaviour
         int        index           = Random.Range(0, sizePrefabs.Count());
         GameObject asteroidToSpawn = Instantiate(sizePrefabs.ElementAt(index), transform);
 
-        Vector2 spawnPoint = new Vector2(
+        spawnPoint = new Vector2(
                                          Random.Range(m_spawnArea.xMin, m_spawnArea.xMax),
                                          Random.Range(m_spawnArea.yMin, m_spawnArea.yMax)
                                         );
@@ -53,12 +55,13 @@ public class AsteroidManager : MonoBehaviour
 
     private void OnAsteroidDie(AsteroidController asteroid) {
         int size = asteroid.size;
+        Vector2 asteroidPoint =  asteroid.transform.position;
 
         Destroy(asteroid.gameObject);
         size--;
         if (size > 0)
         {
-            SpawnRandomAsteroid(size);
+            SpawnRandomAsteroid(size,asteroidPoint);
         }
     }
 }
