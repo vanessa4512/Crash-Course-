@@ -34,7 +34,7 @@ public class AsteroidManager : MonoBehaviour
         }
 
         private IEnumerator SpawnInitialAsteroids() {
-            for (int i = 0; i < m_startingASteroids; i++)
+            for (int i = 0; i < m_maximumAsteroids; i++)
             {
                 Vector2 spawnPoint = new Vector2();
                 yield return new WaitForSeconds(0.1f);
