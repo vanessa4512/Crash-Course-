@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-
 public class ShipController : BoundedEntity
 {
     private float       m_turnInput;
@@ -23,6 +22,11 @@ public class ShipController : BoundedEntity
     private float m_fireCount;
     [SerializeField]
     private bool m_isFiring;
+
+
+    void Awake() {
+     m_rigidbody = gameObject.GetComponent<Rigidbody2D>();
+    }
 
     void OnMove(InputValue value)
     {
@@ -83,5 +87,3 @@ public class ShipController : BoundedEntity
         }
     }
 }
-
-
