@@ -381,8 +381,8 @@ MonoBehaviour:
     height: 70
   m_maxSpeed: 25
   m_turnSpeed: 2.5
-  m_moveSpeed: 15
-  m_stoppingPower: 15
+  m_moveSpeed: 5
+  m_stoppingPower: 5
   m_bulletPrefb: {fileID: 8449148165734038623, guid: e78fb0d6f4ae7f34d96b202a0edd559e, type: 3}
   m_fireDelay: 0.1
   m_fireCount: 0
@@ -787,7 +787,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AsteroidManager
   m_startingASteroids: 3
-  m_maximumAsteroids: 20
+  m_maximumAsteroids: 5
   m_asteroidsPrefabs:
   - {fileID: 4853061621701137250, guid: ce3d28242f813b44eb169d6938f2f016, type: 3}
   - {fileID: 7896545307494569914, guid: f3e0c5235fadcbe47a86e671faa2f5b6, type: 3}
