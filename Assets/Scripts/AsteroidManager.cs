@@ -26,6 +26,7 @@ public class AsteroidManager : MonoBehaviour
     [SerializeField]
     private float m_asteroidSpawnDelay;
 
+    [SerializeField]
     private int m_correntAsteroidCount;
 
     private void Start()
@@ -34,7 +35,7 @@ public class AsteroidManager : MonoBehaviour
         }
 
         private IEnumerator SpawnInitialAsteroids() {
-            for (int i = 0; i < m_maximumAsteroids; i++)
+            for (int i = 0; i < m_startingASteroids; i++)
             {
                 Vector2 spawnPoint = new Vector2();
                 yield return new WaitForSeconds(0.1f);
@@ -58,6 +59,7 @@ public class AsteroidManager : MonoBehaviour
             StartCoroutine(AsteroidSpawner());
         }
 
+
         private Vector2 GetSpawnPointRandom() {
             Vector2 spawnPoint = new Vector2(
                                              Random.Range(m_spawnArea.xMin, m_spawnArea.xMax),
@@ -75,6 +77,7 @@ public class AsteroidManager : MonoBehaviour
         int        index           = Random.Range(0, sizePrefabs.Count());
         GameObject asteroidToSpawn = Instantiate(sizePrefabs.ElementAt(index), transform);
 
+
         asteroidToSpawn.transform.position = spawnPoint;
 
         AsteroidController controller = asteroidToSpawn.GetComponent<AsteroidController>();
@@ -82,7 +85,7 @@ public class AsteroidManager : MonoBehaviour
 
         if (size == 3)
         {
-            m_correntAsteroidCount--;
+            m_correntAsteroidCount++;
         }
     }
 
