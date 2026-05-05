@@ -12,6 +12,14 @@ public class ScoreManager : MonoBehaviour
         ClearScore();
     }
 
+    private void OnEnable() {
+        GameEvents.Instance.onAddToScore += AddScore;
+    }
+
+    private void OnDisable() {
+        GameEvents.Instance.onAddToScore -= AddScore;
+    }
+
     public void AddScore(int amount = 1) {
         m_score += amount;
 

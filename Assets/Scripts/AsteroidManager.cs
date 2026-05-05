@@ -95,6 +95,8 @@ public class AsteroidManager : MonoBehaviour
 
         Destroy(asteroid.gameObject);
 
+            GameEvents.Instance.AddToScore(1);
+
         if (size == 3)
         {
             m_correntAsteroidCount--;

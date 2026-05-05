@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class GameEvents : MonoBehaviour
@@ -14,6 +15,12 @@ public class GameEvents : MonoBehaviour
             }
             return m_instance;
         }
+    }
+
+    public event Action<int> onAddToScore;
+
+    public void AddToScore(int amount = 1) {
+        onAddToScore?.Invoke(amount);
     }
 
 }

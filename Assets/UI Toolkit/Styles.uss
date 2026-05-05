@@ -1,0 +1,35 @@
+:root {
+}
+
+.container {
+    flex-grow: 1;
+}
+
+.Top-bar {
+    flex-grow: 1;
+    height: 65px;
+    background-color: rgba(0, 0, 0, 0.14);
+    flex-direction: row;
+    padding-top: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+    padding-left: 25px;
+}
+
+.scoreValue {
+    color: rgb(255, 255, 255);
+    font-size: 30px;
+    -unity-font-definition: url("project://database/Library/unity%20default%20resources?fileID=10102&guid=0000000000000000e000000000000000&type=0#LegacyRuntime");
+    -unity-text-align: upper-left;
+    background-position-y: center;
+    background-position-x: center;
+    width: 76px;
+    height: 56px;
+}
+
+.ScoreLabel {
+    color: rgb(255, 255, 255);
+    font-size: 30px;
+    -unity-font-definition: url("project://database/Library/unity%20default%20resources?fileID=10102&guid=0000000000000000e000000000000000&type=0#LegacyRuntime");
+    height: 56px;
+}
