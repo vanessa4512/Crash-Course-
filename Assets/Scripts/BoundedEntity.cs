@@ -7,6 +7,12 @@ public class BoundedEntity : MonoBehaviour
     [SerializeField]
     protected Rect m_bounds;
 
+    [SerializeField]
+    protected int m_health;
+
+    [SerializeField]
+    protected int m_maxHealth = 1;
+
     void Awake() {
         m_rigidbody = gameObject.GetComponent<Rigidbody2D>();
     }
@@ -39,4 +45,9 @@ public class BoundedEntity : MonoBehaviour
 
         }
     }
+
+    protected virtual void OnEnable() {
+        m_health = m_maxHealth;
+    }
+
 }

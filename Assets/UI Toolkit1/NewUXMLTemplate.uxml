@@ -8,6 +8,13 @@
                     <ui:DataBinding property="text" data-source-path="m_score" binding-mode="ToTarget"/>
                 </Bindings>
             </ui:Label>
+            <ui:VisualElement name="Spacer" style="flex-grow: 1;"/>
+            <ui:VisualElement name="Lives" class="Lives-icon"/>
+            <ui:Label text="0" name="Lives-score" data-source-type="ScoreManager, Assembly-CSharp" emoji-fallback-support="true" class="scoreValue">
+                <Bindings>
+                    <ui:DataBinding property="text" data-source-path="m_currentLives" binding-mode="ToTarget"/>
+                </Bindings>
+            </ui:Label>
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

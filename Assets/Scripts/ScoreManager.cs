@@ -8,6 +8,12 @@ public class ScoreManager : MonoBehaviour
     [SerializeField]
     private int m_topScore;
 
+    [SerializeField]
+    private int m_currentLives;
+
+    [SerializeField]
+    private int m_maxLives;
+
     private void Awake() {
         ClearScore();
     }
@@ -39,5 +45,7 @@ public class ScoreManager : MonoBehaviour
     /// </summary>
     public void ClearScore() {
         m_score = 0;
+
+        m_currentLives = m_maxLives;
     }
 }

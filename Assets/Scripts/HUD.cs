@@ -13,8 +13,8 @@ public class HUD : MonoBehaviour
         m_uiDocument = gameObject.GetComponent<UIDocument>();
         VisualElement root       = m_uiDocument.rootVisualElement;
 
-        Label         scoreLabel = root.Q<Label>("scoreValue");
-        scoreLabel.dataSource = m_scoreManager;
+        VisualElement topBar = root.Q<VisualElement>("TopBar");
+        topBar.dataSource = m_scoreManager;
     }
 
 }
