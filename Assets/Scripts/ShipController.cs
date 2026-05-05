@@ -86,4 +86,17 @@ public class ShipController : BoundedEntity
             m_fireCount += Time.deltaTime;
         }
     }
+
+    private void onCollisionEnter2D(Collision2D collision) {
+        if (collision.gameObject.TryGetComponent(out AsteroidController asteroid))
+        {
+            LoseHealth();
+        }
+    }
+
+    protected override void OnDie() {
+        Debug.Log("Die!");
+        gameObject.SetActive(false);
+    }
+
 }

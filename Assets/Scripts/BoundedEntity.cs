@@ -50,4 +50,17 @@ public class BoundedEntity : MonoBehaviour
         m_health = m_maxHealth;
     }
 
+    protected void LoseHealth() {
+        m_health--;
+
+        if (m_health <= 0)
+        {
+            OnDie();
+        }
+    }
+
+    protected virtual void OnDie() {
+        
+    }
+
 }
