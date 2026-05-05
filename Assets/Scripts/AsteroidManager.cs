@@ -68,17 +68,13 @@ public class AsteroidManager : MonoBehaviour
         private void SpawnRandomAsteroid(int size, Vector2 spawnPoint)
     {
         IEnumerable<GameObject> sizePrefabs = m_asteroidsPrefabs.Where((x) =>x.GetComponent<AsteroidController>().size == size);
-        if (sizePrefabs == null || sizePrefabs.Count() == 0)
+        if (sizePrefabs == null || sizePrefabs.Count() <= 0)
         {
             return;
         }
         int        index           = Random.Range(0, sizePrefabs.Count());
         GameObject asteroidToSpawn = Instantiate(sizePrefabs.ElementAt(index), transform);
 
-        spawnPoint = new Vector2(
-                                         Random.Range(m_spawnArea.xMin, m_spawnArea.xMax),
-                                         Random.Range(m_spawnArea.yMin, m_spawnArea.yMax)
-                                        );
         asteroidToSpawn.transform.position = spawnPoint;
 
         AsteroidController controller = asteroidToSpawn.GetComponent<AsteroidController>();
