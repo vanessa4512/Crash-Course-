@@ -363,4 +363,4 @@ MonoBehaviour:
   m_size: 3
   m_forcePower: 3
   m_angularPower: 20
-  m_health: 1
+  m_health: 3
