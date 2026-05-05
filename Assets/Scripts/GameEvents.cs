@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class GameEvents : MonoBehaviour
+public class GameEvents
 {
     private static GameEvents m_instance;
 
@@ -19,6 +19,10 @@ public class GameEvents : MonoBehaviour
 
     public event Action<int> onAddToScore;
 
+    /// <summary>
+    /// Dispatches an event to increment the score value.
+    /// </summary>
+    /// <param name="amount">Amount to increment by</param>
     public void AddToScore(int amount = 1) {
         onAddToScore?.Invoke(amount);
     }
