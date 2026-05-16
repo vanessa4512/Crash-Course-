@@ -15,8 +15,10 @@ public class BoundedEntity : MonoBehaviour
     [SerializeField]
     private int m_maxHealth = 1;
 
-    void Awake() {
-        m_rigidbody = gameObject.GetComponent<Rigidbody2D>();
+    protected virtual void Awake() {
+        m_rigidbody      = gameObject.GetComponent<Rigidbody2D>();
+        m_spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        m_collider      = gameObject.GetComponent<Collider2D>();
     }
 
     protected virtual void LateUpdate() {
@@ -49,16 +51,25 @@ public class BoundedEntity : MonoBehaviour
     }
 
     protected virtual void OnEnable() {
-        m_health = m_maxHealth;
+        ResetHealth();
     }
 
     protected void LoseHealth() {
+        if (m_health <= 0)
+        {
+            return;
+        }
+
         m_health--;
 
         if (m_health <= 0)
         {
             OnDie();
         }
+    }
+
+    protected void ResetHealth() {
+        m_health = m_maxHealth;
     }
 
     protected virtual void OnDie() {

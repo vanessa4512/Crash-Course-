@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 public class ShipController : BoundedEntity
@@ -24,12 +25,12 @@ public class ShipController : BoundedEntity
     [SerializeField]
     private bool m_isFiring;
 
-    private void Start() {
-        m_spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
-    }
+    [SerializeField]
+    private bool m_isDead;
 
-    void Awake() {
-     m_rigidbody = gameObject.GetComponent<Rigidbody2D>();
+
+    protected override void Awake() {
+     base.Awake();
     }
 
     void OnMove(InputValue value)
@@ -47,7 +48,14 @@ public class ShipController : BoundedEntity
 
     protected override void LateUpdate() {
 
+        if (m_isDead)
+        {
+            return;
+        }
+
         m_rigidbody.rotation -= (m_turnInput * (m_turnSpeed * 100f)) * Time.deltaTime;
+
+
 
         if (m_forwardInput > 0)
         {
@@ -63,8 +71,6 @@ public class ShipController : BoundedEntity
             m_rigidbody.linearVelocity = m_rigidbody.linearVelocity.normalized * m_maxSpeed;
         }
 
-        base.LateUpdate();
-
         if (m_isFiring)
         {
             TrySpawnBullet();
@@ -73,6 +79,8 @@ public class ShipController : BoundedEntity
         {
             m_fireCount = m_fireDelay;
         }
+
+        base.LateUpdate();
 
     }
 
@@ -92,6 +100,11 @@ public class ShipController : BoundedEntity
     }
 
     private void OnCollisionEnter2D(Collision2D collision) {
+        if (m_isDead)
+        {
+            return;
+        }
+
         if (collision.gameObject.TryGetComponent(out AsteroidController asteroid))
         {
             LoseHealth();
@@ -101,7 +114,31 @@ public class ShipController : BoundedEntity
     protected override void OnDie() {
         GameEvents.Instance.OnPlayerDie();
 
+        m_isDead                 = true;
         m_spriteRenderer.enabled = false;
+        m_collider.enabled       = true;
+        m_rigidbody.simulated    = true;
+
+        StartCoroutine(RespawnPlayer());
     }
 
+    private IEnumerator RespawnPlayer() {
+        yield return new WaitForSeconds(0.5f);
+
+        transform.position           = Vector3.zero;
+        m_rigidbody.linearVelocity     = Vector2.zero;
+        m_rigidbody.rotation           = 0;
+        m_spriteRenderer.enabled       = true;
+        ResetHealth();
+
+        yield return new WaitForSeconds(0.5f);
+
+        m_isDead = false;
+
+        m_rigidbody.simulated    = true;
+
+        yield return new WaitForSeconds(2f);
+        m_collider.enabled = true;
+
+    }
 }
