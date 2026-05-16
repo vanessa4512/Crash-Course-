@@ -20,10 +20,12 @@ public class ScoreManager : MonoBehaviour
 
     private void OnEnable() {
         GameEvents.Instance.onAddToScore += AddScore;
+        GameEvents.Instance.onPlayerDie  += OnPlayerDie;
     }
 
     private void OnDisable() {
         GameEvents.Instance.onAddToScore -= AddScore;
+        GameEvents.Instance.onPlayerDie  -= OnPlayerDie;
     }
 
     /// <summary>
@@ -47,5 +49,14 @@ public class ScoreManager : MonoBehaviour
         m_score = 0;
 
         m_currentLives = m_maxLives;
+    }
+
+    private void OnPlayerDie() {
+        m_currentLives--;
+
+        if (m_currentLives <= 0)
+        {
+            Debug.Log("GAME OVER");
+        }
     }
 }

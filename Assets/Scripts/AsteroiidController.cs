@@ -11,11 +11,9 @@ public class AsteroidController : BoundedEntity
     [SerializeField]
     private float m_angularPower;
 
+
     public int                              size => m_size;
     public event Action<AsteroidController> onAsteroidDie;
-
-    [SerializeField]
-    private float m_health;
 
     private void Start() {
         m_rigidbody.AddForce(Random.insideUnitCircle * m_rigidbody.mass * m_forcePower, ForceMode2D.Impulse);

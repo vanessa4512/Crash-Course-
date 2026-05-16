@@ -25,6 +25,10 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3051511521107153495, guid: 8a8ab420b7c565a46a7edf12e6555d12, type: 3}
+      propertyPath: m_maxHealth
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3051511521107153495, guid: 8a8ab420b7c565a46a7edf12e6555d12, type: 3}
       propertyPath: m_forcePower
       value: 1
       objectReference: {fileID: 0}

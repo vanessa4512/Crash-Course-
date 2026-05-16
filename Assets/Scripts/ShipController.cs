@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 public class ShipController : BoundedEntity
 {
+
     private float       m_turnInput;
     private float       m_forwardInput;
 
@@ -23,6 +24,9 @@ public class ShipController : BoundedEntity
     [SerializeField]
     private bool m_isFiring;
 
+    private void Start() {
+        m_spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+    }
 
     void Awake() {
      m_rigidbody = gameObject.GetComponent<Rigidbody2D>();
@@ -87,7 +91,7 @@ public class ShipController : BoundedEntity
         }
     }
 
-    private void onCollisionEnter2D(Collision2D collision) {
+    private void OnCollisionEnter2D(Collision2D collision) {
         if (collision.gameObject.TryGetComponent(out AsteroidController asteroid))
         {
             LoseHealth();
@@ -95,8 +99,9 @@ public class ShipController : BoundedEntity
     }
 
     protected override void OnDie() {
-        Debug.Log("Die!");
-        gameObject.SetActive(false);
+        GameEvents.Instance.OnPlayerDie();
+
+        m_spriteRenderer.enabled = false;
     }
 
 }

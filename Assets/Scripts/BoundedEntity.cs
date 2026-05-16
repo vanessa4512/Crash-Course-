@@ -3,6 +3,8 @@ using UnityEngine;
 public class BoundedEntity : MonoBehaviour
 {
     protected Rigidbody2D m_rigidbody;
+    protected Collider2D m_collider;
+    protected SpriteRenderer m_spriteRenderer;
 
     [SerializeField]
     protected Rect m_bounds;
@@ -11,7 +13,7 @@ public class BoundedEntity : MonoBehaviour
     protected int m_health;
 
     [SerializeField]
-    protected int m_maxHealth = 1;
+    private int m_maxHealth = 1;
 
     void Awake() {
         m_rigidbody = gameObject.GetComponent<Rigidbody2D>();
@@ -60,7 +62,7 @@ public class BoundedEntity : MonoBehaviour
     }
 
     protected virtual void OnDie() {
-        
+
     }
 
 }
