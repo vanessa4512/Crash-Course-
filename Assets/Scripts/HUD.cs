@@ -8,6 +8,8 @@ public class HUD : MonoBehaviour
     [SerializeField]
     private ScoreManager m_scoreManager;
 
+    private VisualElement m_gameOverScreen;
+
     private void OnEnable()
     {
         m_uiDocument = gameObject.GetComponent<UIDocument>();
@@ -15,6 +17,18 @@ public class HUD : MonoBehaviour
 
         VisualElement topBar = root.Q<VisualElement>("TopBar");
         topBar.dataSource = m_scoreManager;
+
+        m_gameOverScreen = root.Q<VisualElement>("GameOver");
+
+        GameEvents.Instance.onGameOver += OnGameOver;
+    }
+
+    private void OnDisable() {
+        GameEvents.Instance.onGameOver -= OnGameOver;
+    }
+
+    private void OnGameOver() {
+        m_gameOverScreen.RemoveFromClassList("hidden");
     }
 
 }

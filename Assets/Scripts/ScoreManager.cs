@@ -56,7 +56,8 @@ public class ScoreManager : MonoBehaviour
 
         if (m_currentLives <= 0)
         {
-            Debug.Log("GAME OVER");
+            GameEvents.Instance.OnGameOver();
+            Time.timeScale = 0;
         }
     }
 }

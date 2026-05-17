@@ -21,6 +21,8 @@ public class GameEvents
 
     public event Action onPlayerDie;
 
+    public event Action onGameOver;
+
     /// <summary>
     /// Dispatches an event to increment the score value.
     /// </summary>
@@ -34,6 +36,10 @@ public class GameEvents
     /// </summary>
     public void OnPlayerDie() {
         onPlayerDie?.Invoke();
+    }
+
+    public void OnGameOver() {
+        onGameOver?.Invoke();
     }
 
 }
