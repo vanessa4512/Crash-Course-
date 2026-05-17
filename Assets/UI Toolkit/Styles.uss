@@ -133,7 +133,7 @@
     transition-duration: 0.35s;
 }
 
-.Button:hovel.Button-Label {
+.Button:hover.Button-Label {
     color: rgb(200, 37, 197);
     border-left-color: rgb(200, 37, 197);
     border-right-color: rgb(200, 37, 197);

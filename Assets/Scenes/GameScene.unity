@@ -166,7 +166,7 @@ MonoBehaviour:
   m_score: 0
   m_topScore: 0
   m_currentLives: 0
-  m_maxLives: 3
+  m_maxLives: 1
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0

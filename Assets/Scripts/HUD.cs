@@ -1,3 +1,5 @@
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -20,7 +22,36 @@ public class HUD : MonoBehaviour
 
         m_gameOverScreen = root.Q<VisualElement>("GameOver");
 
+        VisualElement retryButton = m_gameOverScreen.Q<VisualElement>("RetryButton");
+        VisualElement quitButton = m_gameOverScreen.Q<VisualElement>("QuitButton");
+
+        Clickable retryClickable = new Clickable(() => {
+                                                     HandleRetryEvent();
+                                                 });
+
+        Clickable quitClickable = new Clickable(() =>
+                                                {
+                                                    OnQuit();
+                                                }
+                                               );
+
+        quitButton.AddManipulator(quitClickable);
+        retryButton.AddManipulator(retryClickable);
+
         GameEvents.Instance.onGameOver += OnGameOver;
+    }
+
+    private void HandleRetryEvent() {
+        GameEvents.Instance.Retry();
+        m_gameOverScreen.AddToClassList("hidden");
+    }
+
+    private void OnQuit() {
+        Application.Quit();
+
+#if  UNITY_EDITOR
+        UnityEditor.EditorApplication.ExitPlaymode();
+#endif
     }
 
     private void OnDisable() {
@@ -29,6 +60,7 @@ public class HUD : MonoBehaviour
 
     private void OnGameOver() {
         m_gameOverScreen.RemoveFromClassList("hidden");
+
     }
 
 }

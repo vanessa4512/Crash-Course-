@@ -29,9 +29,20 @@ public class AsteroidManager : MonoBehaviour
     [SerializeField]
     private int m_correntAsteroidCount;
 
+    private void OnEnable() {
+        GameEvents.Instance.onGameOver += OnGameOver;
+        GameEvents.Instance.onRetry    += OnRetry;
+    }
+
+    private void OnDisable() {
+        GameEvents.Instance.onRetry -= OnRetry;
+    }
+
+
+
     private void Start()
         {
-            StartCoroutine(SpawnInitialAsteroids());
+            OnRetry();
         }
 
         private IEnumerator SpawnInitialAsteroids() {
@@ -58,6 +69,7 @@ public class AsteroidManager : MonoBehaviour
 
             StartCoroutine(AsteroidSpawner());
         }
+
 
 
         private Vector2 GetSpawnPointRandom() {
@@ -113,5 +125,19 @@ public class AsteroidManager : MonoBehaviour
                 SpawnRandomAsteroid(size, (Random.insideUnitCircle * 5f) + asteroidPoint);
             }
         }
+    }
+
+    private void OnGameOver() {
+        StopAllCoroutines();
+        m_correntAsteroidCount = 0;
+    }
+
+    private void OnRetry() {
+        foreach (Transform t in transform)
+        {
+            Destroy(t.gameObject);
+        }
+        StartCoroutine(SpawnInitialAsteroids());
+
     }
 }

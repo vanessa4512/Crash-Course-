@@ -111,13 +111,33 @@ public class ShipController : BoundedEntity
         }
     }
 
+    protected override void OnEnable() {
+       GameEvents.Instance.onRetry += OnRetry;
+       base.OnEnable();
+    }
+
+    private void OnRetry() {
+        SetPlayerAsDead();
+
+        StartCoroutine(RespawnPlayer());
+    }
+
+    protected override void OnDisable() {
+        GameEvents.Instance.onRetry -= OnRetry;
+base.OnDisable();
+    }
+
+    protected void SetPlayerAsDead() {
+        m_isDead                 = true;
+        m_spriteRenderer.enabled = false;
+        m_collider.enabled       = false;
+        m_rigidbody.simulated    = false;
+    }
+
     protected override void OnDie() {
         GameEvents.Instance.OnPlayerDie();
 
-        m_isDead                 = true;
-        m_spriteRenderer.enabled = false;
-        m_collider.enabled       = true;
-        m_rigidbody.simulated    = true;
+        SetPlayerAsDead();
 
         StartCoroutine(RespawnPlayer());
     }

@@ -54,6 +54,10 @@ public class BoundedEntity : MonoBehaviour
         ResetHealth();
     }
 
+    protected virtual void OnDisable() {
+
+    }
+
     protected void LoseHealth() {
         if (m_health <= 0)
         {

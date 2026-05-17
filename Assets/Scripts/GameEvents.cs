@@ -23,6 +23,8 @@ public class GameEvents
 
     public event Action onGameOver;
 
+    public event Action onRetry;
+
     /// <summary>
     /// Dispatches an event to increment the score value.
     /// </summary>
@@ -38,8 +40,21 @@ public class GameEvents
         onPlayerDie?.Invoke();
     }
 
+    /// <summary>
+    /// Dispatches an event to tell us the game is over.
+    /// </summary>
     public void OnGameOver() {
         onGameOver?.Invoke();
     }
 
+    /// <summary>
+    /// Dispatches an event to tell us the player wants to restart the game.
+    /// </summary>
+    public void Retry() {
+        onRetry?.Invoke();
+    }
+
+    public void OnRetry() {
+        onRetry?.Invoke();
+    }
 }

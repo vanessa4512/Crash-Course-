@@ -21,11 +21,15 @@ public class ScoreManager : MonoBehaviour
     private void OnEnable() {
         GameEvents.Instance.onAddToScore += AddScore;
         GameEvents.Instance.onPlayerDie  += OnPlayerDie;
+        GameEvents.Instance.onRetry += OnRetry;
     }
+
+
 
     private void OnDisable() {
         GameEvents.Instance.onAddToScore -= AddScore;
         GameEvents.Instance.onPlayerDie  -= OnPlayerDie;
+        GameEvents.Instance.onRetry      -= OnRetry;
     }
 
     /// <summary>
@@ -59,5 +63,10 @@ public class ScoreManager : MonoBehaviour
             GameEvents.Instance.OnGameOver();
             Time.timeScale = 0;
         }
+    }
+
+    private void OnRetry() {
+        Time.timeScale = 1;
+        ClearScore();
     }
 }
