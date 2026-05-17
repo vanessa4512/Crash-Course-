@@ -1,6 +1,12 @@
 :root {
 }
 
+.hidden {
+    display: none;
+    opacity: 0;
+    translate: 0 50px;
+}
+
 .container {
     flex-grow: 1;
 }
@@ -54,6 +60,7 @@
     background-color: rgba(0, 0, 0, 0.9);
     align-items: center;
     justify-content: center;
+    transition-duration: 0.35s;
 }
 
 .game-over-label {
@@ -161,4 +168,18 @@
     scale: 1.05 1.05;
     transition-property: scale;
     transition-duration: 0.35s;
+}
+
+.hidden {
+    top: -159px;
+    bottom: -374px;
+    right: -7px;
+    left: -12px;
+}
+
+.hidden {
+    top: -123px;
+    bottom: -333px;
+    right: -1px;
+    left: 2px;
 }

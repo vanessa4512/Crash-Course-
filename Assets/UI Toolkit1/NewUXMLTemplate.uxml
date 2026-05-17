@@ -16,8 +16,8 @@
                 </Bindings>
             </ui:Label>
         </ui:VisualElement>
-        <ui:VisualElement name="GameOver" class="Game-Over-Background" style="top: -1px; bottom: -328px; right: 5px; left: -5px;">
-            <ui:VisualElement name="CenterPanel" class="game-over-center" style="height: 134px; width: 225px;">
+        <ui:VisualElement name="GameOver" class="Game-Over-Background hidden">
+            <ui:VisualElement name="CenterPanel" class="game-over-center" style="height: 123px; width: 224px;">
                 <ui:Label text="Game Over" name="gameoverlabelk" class="game-over-label"/>
                 <ui:VisualElement name="RetryButton" class="Button" style="-unity-font-definition: url(&quot;project://database/Assets/Letras/Gameplay.ttf?fileID=12800000&amp;guid=538a760344fe1804ca530ad46d8003d6&amp;type=3#Gameplay&quot;); -unity-text-align: middle-left; flex-direction: column-reverse; flex-shrink: 1; width: 150px; height: 0;">
                     <ui:Label text="Retry" selectable="false" focusable="false" name="ButtonLabel" style="flex-shrink: 1; background-color: rgb(180, 147, 221); color: rgb(83, 62, 108); border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px; border-top-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px; border-left-color: rgb(216, 165, 238); border-right-color: rgb(216, 165, 238); border-top-color: rgb(216, 165, 238); border-bottom-color: rgb(216, 165, 238); -unity-text-align: middle-center; flex-grow: 0;"/>
